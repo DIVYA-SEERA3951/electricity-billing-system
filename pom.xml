@@ -15,7 +15,7 @@
     <groupId>com.example</groupId>
     <artifactId>electricity-billing-system</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <n>electricity-billing-system</n>
+    <name>electricity-billing-system</name>
     <description>Full Stack Electricity Billing System with Role-Based Access</description>
 
     <properties>
