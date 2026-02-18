@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bills — PowerBill Admin</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="alertBox"></div>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-admin">
+  <div class="container">
+    <a class="navbar-brand" href="admin-dashboard.html">⚡ <span>PowerBill</span> <span class="badge-admin ms-2">ADMIN</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto align-items-center">
+        <li class="nav-item"><a class="nav-link" href="admin-dashboard.html">📊 Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link" href="customers.html">👤 Customers</a></li>
+        <li class="nav-item"><a class="nav-link active" href="bills.html">🧾 Bills</a></li>
+        <li class="nav-item"><span class="nav-link text-warning fw-bold" id="navUser"></span></li>
+        <li class="nav-item"><button class="btn btn-outline-light btn-sm ms-2" onclick="logout()">Logout</button></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Header -->
+<div class="page-header page-header-admin">
+  <div class="container">
+    <h2>🧾 Bill Management</h2>
+    <p class="mb-0 opacity-75">Generate bills for customers (Admin only)</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row g-4">
+
+    <!-- Generate Form -->
+    <div class="col-lg-4">
+      <div class="card p-4">
+        <h5 class="fw-bold mb-3">⚡ Generate New Bill</h5>
+        <!-- Rate card -->
+        <div class="p-3 mb-3 rounded" style="background:#f5f3ff; border:1px solid #c4b5fd;">
+          <p class="mb-1 small fw-bold text-purple">💡 Billing Rate:</p>
+          <p class="mb-0 small text-muted">0–100 units: ₹3.50/unit</p>
+          <p class="mb-0 small text-muted">101–300 units: ₹5.00/unit</p>
+          <p class="mb-0 small text-muted">300+ units: ₹7.00/unit</p>
+        </div>
+        <form id="billForm" onsubmit="adminGenerateBill(event)">
+          <div class="mb-3">
+            <label class="form-label">Select Customer</label>
+            <select id="billCustomerSelect" class="form-control" required>
+              <option value="">— Loading customers... —</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Units Consumed</label>
+            <input type="number" id="billUnits" class="form-control" placeholder="e.g. 250" required min="1" step="0.1">
+          </div>
+          <button type="submit" class="btn btn-admin w-100">Generate Bill</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Bills Table -->
+    <div class="col-lg-8">
+      <div class="table-container">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h5 class="fw-bold mb-0">All Bills</h5>
+          <button class="btn btn-outline-secondary btn-sm" onclick="adminLoadBills()">🔄 Refresh</button>
+        </div>
+        <table class="table table-hover">
+          <thead>
+            <tr><th>Bill ID</th><th>Customer</th><th>Units</th><th>Amount</th><th>Date</th><th>Status</th></tr>
+          </thead>
+          <tbody id="billsTableBody">
+            <tr><td colspan="6" class="text-center text-muted">Loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer><p>© 2024 PowerBill Manager — Admin Panel</p></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/app.js"></script>
+<script>
+  (async () => {
+    const session = await checkSession('ADMIN');
+    if (!session) return;
+    setNavUser(session.username, session.role);
+    // Load customers into dropdown AND load bills table
+    await adminLoadCustomers();
+    await adminLoadBills();
+  })();
+</script>
+</body>
+</html>

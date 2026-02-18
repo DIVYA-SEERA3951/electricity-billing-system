@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — PowerBill</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="alertBox"></div>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-admin">
+  <div class="container">
+    <a class="navbar-brand" href="admin-dashboard.html">⚡ <span>PowerBill</span> <span class="badge-admin ms-2">ADMIN</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto align-items-center">
+        <li class="nav-item"><a class="nav-link active" href="admin-dashboard.html">📊 Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link" href="customers.html">👤 Customers</a></li>
+        <li class="nav-item"><a class="nav-link" href="bills.html">🧾 Bills</a></li>
+        <li class="nav-item">
+          <span class="nav-link text-warning fw-bold" id="navUser"></span>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-outline-light btn-sm ms-2" onclick="logout()">Logout</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Header -->
+<div class="page-header page-header-admin">
+  <div class="container">
+    <h2>🛡️ Admin Dashboard</h2>
+    <p class="mb-0 opacity-75">Welcome back, <strong id="welcomeUser"></strong>! System overview below.</p>
+  </div>
+</div>
+
+<!-- Stats -->
+<div class="container mb-5">
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="card stat-card">
+        <div class="icon">👤</div>
+        <h3 id="statCustomers" style="color:#7c3aed;">—</h3>
+        <p>Total Customers</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card stat-card">
+        <div class="icon">🧾</div>
+        <h3 id="statBills" style="color:#7c3aed;">—</h3>
+        <p>Total Bills</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card stat-card">
+        <div class="icon">💰</div>
+        <h3 id="statRevenue" style="color:#7c3aed;">—</h3>
+        <p>Total Revenue</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="row g-4 mt-2">
+    <div class="col-md-6">
+      <div class="card p-4">
+        <h5 class="fw-bold mb-3">⚡ Quick Actions</h5>
+        <div class="d-grid gap-2">
+          <a href="customers.html" class="btn btn-admin">➕ Add / Manage Customers</a>
+          <a href="bills.html"     class="btn btn-outline-secondary">🧾 Generate / View Bills</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card p-4">
+        <h5 class="fw-bold mb-3">ℹ️ System Info</h5>
+        <ul class="list-unstyled text-muted mb-0 small">
+          <li>🟢 <strong>Role:</strong> Administrator</li>
+          <li>🟢 <strong>Backend:</strong> Spring Boot 3 (Java 17)</li>
+          <li>🟢 <strong>Database:</strong> MySQL (Railway)</li>
+          <li>🟢 <strong>Session:</strong> HttpSession (server-side)</li>
+          <li>🟢 <strong>ORM:</strong> Spring Data JPA + Hibernate</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer><p>© 2024 PowerBill Manager — Admin Panel</p></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/app.js"></script>
+<script>
+  (async () => {
+    const session = await checkSession('ADMIN');
+    if (!session) return;
+    document.getElementById('welcomeUser').textContent = session.username;
+    setNavUser(session.username, session.role);
+    await adminLoadStats();
+  })();
+</script>
+</body>
+</html>

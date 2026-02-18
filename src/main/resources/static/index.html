@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>⚡ PowerBill — Electricity Billing System</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">⚡ <span>PowerBill</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto align-items-center">
+        <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="btn btn-outline-light ms-2 px-3" href="login.html">Login</a></li>
+        <li class="nav-item"><a class="btn btn-warning ms-2 px-3 fw-bold" href="register.html">Register</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <h1>⚡ <span>Power</span>Bill Manager</h1>
+    <p>A cloud-powered electricity billing system with role-based access for Admins and Customers.</p>
+    <div class="d-flex justify-content-center gap-3 flex-wrap">
+      <a href="register.html" class="btn btn-warning btn-lg fw-bold px-5">Get Started</a>
+      <a href="login.html" class="btn btn-outline-light btn-lg px-5">Login</a>
+    </div>
+  </div>
+</section>
+
+<!-- Role Highlights -->
+<section class="py-5 bg-white">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-5">Two Roles, One System</h2>
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="card p-4 h-100" style="border-left: 5px solid #7c3aed;">
+          <h4 class="fw-bold">🛡️ Admin</h4>
+          <ul class="mt-3 text-muted">
+            <li>Add and manage all customers</li>
+            <li>Generate electricity bills</li>
+            <li>View all bills and revenue stats</li>
+            <li>Delete customer records</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card p-4 h-100" style="border-left: 5px solid #059669;">
+          <h4 class="fw-bold">👤 Customer</h4>
+          <ul class="mt-3 text-muted">
+            <li>View personal profile details</li>
+            <li>View own electricity bills</li>
+            <li>Track usage and amount</li>
+            <li>Session-secured access</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="py-5" id="features">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-5">Key Features</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card feature-card h-100">
+          <div class="feature-icon">🔐</div>
+          <h5 class="fw-bold">Role-Based Access</h5>
+          <p class="text-muted">Admin and Customer roles with server-side HttpSession security. No localStorage tokens.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card feature-card h-100">
+          <div class="feature-icon">🧾</div>
+          <h5 class="fw-bold">Smart Billing</h5>
+          <p class="text-muted">Auto-calculate bills using tiered electricity rates based on units consumed.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card feature-card h-100">
+          <div class="feature-icon">☁️</div>
+          <h5 class="fw-bold">Railway Deployment</h5>
+          <p class="text-muted">Deployed on Railway with cloud MySQL. Zero local setup required.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section class="py-5 bg-white" id="about">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <h2 class="fw-bold">About This Project</h2>
+        <p class="text-muted mt-3">Built with <strong>Spring Boot 3</strong>, <strong>Java 17</strong>, <strong>MySQL</strong>, and a plain <strong>HTML + Bootstrap 5</strong> frontend. Demonstrates a complete 3-layer architecture with server-side session management.</p>
+        <div class="row mt-4 g-2">
+          <div class="col-6"><div class="card p-2 text-center small fw-bold">Java 17</div></div>
+          <div class="col-6"><div class="card p-2 text-center small fw-bold">Spring Boot 3</div></div>
+          <div class="col-6"><div class="card p-2 text-center small fw-bold">MySQL</div></div>
+          <div class="col-6"><div class="card p-2 text-center small fw-bold">Bootstrap 5</div></div>
+          <div class="col-6"><div class="card p-2 text-center small fw-bold">HttpSession</div></div>
+          <div class="col-6"><div class="card p-2 text-center small fw-bold">Railway</div></div>
+        </div>
+        <a href="register.html" class="btn btn-primary mt-4">Try It Now →</a>
+      </div>
+      <div class="col-md-6 text-center">
+        <div style="font-size:9rem; opacity:.1; color:#1a73e8; line-height:1;">⚡</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2024 PowerBill Manager — Spring Boot 3 · Java 17 · MySQL · Railway</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
